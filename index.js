@@ -25,6 +25,7 @@ function paginate(query, options, callback) {
     var select     = options.select;
     var sort       = options.sort;
     var collation  = options.collation;
+    var projection = options.projection;
     var populate   = options.populate;
     var lean       = options.lean || false;
     var leanWithId = options.hasOwnProperty('leanWithId') ? options.leanWithId : true;
@@ -59,7 +60,7 @@ function paginate(query, options, callback) {
     };
 
     if (limit) {
-        var query = this.find(query)
+        var query = this.find(query, projection)
                         .select(select)
                         .sort(sort)
                         .collation(collation)
